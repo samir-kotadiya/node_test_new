@@ -86,6 +86,10 @@ export class MenuItemsService {
   */
 
   async getMenuItems() {
-    throw new Error('TODO in task 3');
+    //throw new Error('TODO in task 3');
+    return this.menuItemRepository.createQueryBuilder('menu-item')
+    .innerJoinAndSelect('menu-item.children', 'children')
+    .innerJoinAndSelect('children.children', 'childrens')
+    .getMany()
   }
 }
